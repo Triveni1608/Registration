@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script type="text/javascript" src='https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js'></script>
+    <script src="main.js"></script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="registrationCtrl">
+
+    <form class="form-css" name="myForm" novalidate>
+        <div class="container">
+            <h1>Registration Form</h1>
+            <hr>
+             <div class="form-group">
+                <label for="psw"><b>FirstName</b></label>
+                <input type="text" placeholder="Enter FirstName" name="fname" ng-model="data.fname" required>
+                <span style="color:red" ng-show="myForm.fname.$dirty && myForm.fname.$invalid">
+                <span ng-show="myForm.fname.$error.required">FistName is required</span>
+            </div>
+             <div class="form-group">
+                <label for="psw"><b>LastName</b></label>
+                <input type="text" placeholder="Enter LastName" name="lname" ng-model="data.lname" required>
+                <span style="color:red" ng-show="myForm.lname.$dirty && myForm.lname.$invalid">
+                <span ng-show="myForm.lname.$error.required">LastName is required</span>
+            </div>
+            <div class="form-group">
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" ng-model="data.email" ng-pattern="/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/" required>
+                <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                <span ng-show="myForm.email.$error.required">Email is required</span>
+                <span ng-show="myForm.email.$error.pattern">Invalid Email</span>
+            </span>
+            </div>
+            <div class="form-group">
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="pwd" ng-model="data.password" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}$/" required>
+                <span style="color:red" ng-show="myForm.pwd.$dirty && myForm.pwd.$invalid">
+                <span ng-show="myForm.pwd.$error.required">Password is required</span>
+                <span ng-show="myForm.pwd.$error.pattern">Password must contains 8 charanter atleast one special symbol,uppercase and number</span>
+            </div>
+
+            <button type="submit" class="registerbtn" ng-click="save()" ng-disabled="myForm.$invalid">Register</button>
+            <p ng-if="successMsg">{{successMsg}}</p>
+        </div>
+
+
+    </form>
+
+</body>
+
+</html>
